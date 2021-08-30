@@ -8,17 +8,23 @@
 .productCard {
   max-width: 300px;
   margin: 3rem 1rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 2rem;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  transition: 500ms ease;
+}
+
+.productCard:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  transform: scale(1.02);
 }
 
 .purchaseButtons {
   display: flex;
-  justify-content: space-around;
-}
-
-.rating {
-  margin-bottom: 2rem;
-}
-
-.title {
-  margin-top: 2rem;
+  justify-content: space-between;
 }
