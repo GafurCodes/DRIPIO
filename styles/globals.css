@@ -1,3 +1,5 @@
+/* color pallete: https://colorhunt.co/palette/08d9d6252a34ff2e63eaeaea */
+
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap");
 
 html,
@@ -16,12 +18,20 @@ a {
   box-sizing: border-box;
 }
 
+* span {
+  font-family: var(--font-fam);
+}
+
 :root {
   font-size: 16px;
-  --text-primary: #b6b6b6;
+  /* --text-primary: #b6b6b6;
   --text-secondary: #ececec;
   --bg-primary: #23232e;
-  --bg-secondary: #141418;
+  --bg-secondary: #141418; */
+  --primary-color: #08d9d6;
+  --secondary-color: #252a34;
+  --accent-color: #ff2e63;
+  --tertirary-color: #eaeaea;
   --transition-speed: 400ms;
   --font-fam: "Roboto", sans-serif;
   --thin: 100;

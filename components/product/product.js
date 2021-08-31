@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./Product.module.css";
 import Link from "next/link";
+import ReactStars from "react-rating-stars-component";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Product() {
   useEffect(async () => {
@@ -11,6 +15,17 @@ export default function Product() {
   }, []);
 
   const [data, setData] = useState();
+
+  const notify = () =>
+    toast.success("Added to cart", {
+      position: "bottom-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
   return (
     <div className={styles.products}>
@@ -32,8 +47,20 @@ export default function Product() {
                   })}
                 </h1>
                 <section className={styles.rating}>
-                  {rating.rate} ({rating.count} reviews)
+                  <ReactStars
+                    size={20}
+                    value={rating.rate}
+                    edit={false}
+                    isHalf={true}
+                  />
+                  <span>{rating.rate} </span>
+                  <span>({rating.count} reviews)</span>
                 </section>
+
+                <button className={styles.addToCart} onClick={notify}>
+                  <span>Add to cart</span>
+                  {/* <span> icon</span> */}
+                </button>
               </section>
             </a>
           </Link>
@@ -41,6 +68,7 @@ export default function Product() {
       ) : (
         <h1>loading</h1>
       )}
+      <ToastContainer />
     </div>
   );
 }

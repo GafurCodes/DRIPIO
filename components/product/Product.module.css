@@ -15,6 +15,7 @@
   flex-direction: column;
   justify-content: space-around;
   transition: 500ms ease;
+  border-radius: 1rem;
 }
 
 .productCard:hover {
@@ -24,7 +25,39 @@
   transform: scale(1.02);
 }
 
-.purchaseButtons {
+.title {
+  font-weight: var(--regular);
+  text-align: center;
+}
+
+.rating {
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  font-weight: var(--thin);
+}
+
+.addToCart:hover {
+  cursor: pointer;
+}
+
+.addToCart {
+  background: var(--primary-color);
+  color: white;
+  padding: 1rem;
+  border: none;
+  font-size: 1.3rem;
+  margin-top: 1rem;
+  transition: 300ms ease;
+  border-radius: 0.2rem;
+}
+
+.addToCart svg {
+  vertical-align: text-top;
+  margin-left: 1rem;
+  transition: 300ms ease;
+}
+
+.addToCart:hover {
+  filter: hue-rotate(20deg);
 }
