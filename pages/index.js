@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Product from "../components/product/product";
+import Product from "../components/productThumbnail/product";
 import productsLayout from "../styles/ProductsLayout.module.css";
 
 export default function Home({ data }) {
@@ -12,7 +12,13 @@ export default function Home({ data }) {
       <h1>Products:</h1>
       <div className={productsLayout.products}>
         {data.map(({ id, image, title, rating }) => (
-          <Product key={id} image={image} title={title} rating={rating} />
+          <Product
+            key={id}
+            image={image}
+            title={title}
+            rating={rating}
+            id={id.toString()}
+          />
         ))}
       </div>
     </div>

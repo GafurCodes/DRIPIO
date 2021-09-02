@@ -3,32 +3,22 @@ import Image from "next/image";
 import styles from "./Product.module.css";
 import Link from "next/link";
 import ReactStars from "react-rating-stars-component";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useToast } from "@chakra-ui/react";
 
-export default function Product({ rating, image, title }) {
-  useEffect(async () => {
-    const res = await fetch("https://fakestoreapi.com/products/");
-    const data = await res.json();
-    setData(data);
-  }, []);
+export default function Product({ rating, image, title, id }) {
+  const toast = useToast();
 
-  const [data, setData] = useState();
-
-  const notify = () =>
-    toast.success("Added to cart", {
-      position: "bottom-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+  const toastConfig = {
+    title: "Added to cart.",
+    description: "You can access your cart in the top-right corner.",
+    status: "success",
+    duration: 5000,
+    isClosable: true,
+  };
 
   return (
     <div className={styles.products}>
-      <Link href="/">
+      <Link href={id}>
         <a>
           <section className={styles.productCard}>
             <Image
@@ -38,11 +28,13 @@ export default function Product({ rating, image, title }) {
               width="300"
               height="300px"
             />
+
             <h1 className={styles.title}>
               {title.split(" ").map((word, index) => {
                 if (index < 5) return `${word} `;
               })}
             </h1>
+
             <section className={styles.rating}>
               <ReactStars
                 size={20}
@@ -54,15 +46,16 @@ export default function Product({ rating, image, title }) {
               <span>({rating.count} reviews)</span>
             </section>
 
-            <button className={styles.addToCart} onClick={notify}>
+            {/* <button
+              className={styles.addToCart}
+              onClick={() => toast(toastConfig)}
+            >
               <span>Add to cart</span>
-              {/* <span> icon</span> */}
-            </button>
+              <span> icon</span>
+            </button> */}
           </section>
         </a>
       </Link>
-
-      <ToastContainer />
     </div>
   );
 }
