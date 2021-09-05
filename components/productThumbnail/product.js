@@ -18,7 +18,7 @@ export default function Product({ rating, image, title, id }) {
 
   return (
     <div className={styles.products}>
-      <Link href={id}>
+      <Link href={`/products/${id}`}>
         <a>
           <section className={styles.productCard}>
             <Image
