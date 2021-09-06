@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Image from "next/image";
+import ProductDetails from "../../components/productDetails/productDetails";
 
 export default function Product({
   data: {
@@ -11,7 +11,17 @@ export default function Product({
     rating: { rate, count },
   },
 }) {
-  return <></>;
+  return (
+    <ProductDetails
+      title={title}
+      price={price}
+      description={description}
+      category={category}
+      image={image}
+      rate={rate}
+      rateCount={count}
+    />
+  );
 }
 
 export async function getStaticProps({ params: { id } }) {
