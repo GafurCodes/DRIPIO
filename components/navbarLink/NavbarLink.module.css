@@ -17,6 +17,11 @@
 
 .navLink:hover {
   filter: grayscale(0) opacity(1);
+  color: var(--primary-color);
+}
+
+.navLink:hover svg {
+  color: var(--primary-color);
 }
 
 .linkText {
