@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import ProductDetails from "../../components/productDetails/productDetails";
 
 export default function Product({

@@ -44,9 +44,9 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-  background: #1e1e24;
+  background: var(--secondary-color);
 }
 
 body::-webkit-scrollbar-thumb {
-  background: #6649b8;
+  background: var(--primary-color);
 }
