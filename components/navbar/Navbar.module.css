@@ -3,7 +3,7 @@
   background-color: var(--secondary-color);
   transition: width 200ms ease;
   font-size: 1.8rem;
-  z-index: 1;
+  z-index: 999;
   color: var(--tertirary-color);
 }
 
