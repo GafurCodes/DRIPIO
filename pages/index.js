@@ -1,11 +1,11 @@
 import Head from "next/head";
 import { useContext } from "react";
-import { FilterContext } from "../components/filterContext/FilterContext";
+import { CategoryContext } from "../components/categoryContext/CategoryContext";
 import Product from "../components/productThumbnail/product";
 import productsLayout from "../styles/ProductsLayout.module.css";
 
 export default function Home({ data }) {
-  const { category } = useContext(FilterContext);
+  const { category } = useContext(CategoryContext);
 
   return (
     <div>
