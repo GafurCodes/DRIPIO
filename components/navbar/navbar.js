@@ -9,14 +9,13 @@ import {
   FaArrowLeft,
   FaGithub,
 } from "react-icons/fa";
-import { useEffect, useState } from "react";
+
 
 export default function Navbar({ passCategory }) {
-  const [category, setCategory] = useState("Dripio");
 
-  const getCategory = (categoryPassed) => setCategory(categoryPassed);
+const getCategory = (categoryPassed) => passCategory(categoryPassed);
 
-  useEffect(() => passCategory(category), [category]);
+ 
 
   return (
     <nav className={styles.navbar}>

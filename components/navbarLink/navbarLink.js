@@ -12,7 +12,7 @@ export default function navbarLink({
   return (
     <li
       className={isLogo ? styles.logo : styles.navItem}
-      onClick={() => passCategory(text)}
+      onClick={() => {if (!isGithub) passCategory(text)}}
     >
       <Link href={hrefPath}>
         <a className={styles.navLink} target={isGithub ? "_blank" : "_self"}>
