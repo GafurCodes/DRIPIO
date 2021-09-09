@@ -10,11 +10,7 @@ export default function Layout({ children }) {
 
   return (
     <>
-      <CategoryContext.Provider
-        value={{
-          category,
-        }}
-      >
+      <CategoryContext.Provider value={category}>
         <Navbar passCategory={getCategory} />
         <main className={styles.main}>{children}</main>
       </CategoryContext.Provider>
