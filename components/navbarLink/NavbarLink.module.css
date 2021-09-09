@@ -1,5 +1,6 @@
 .navItem {
   width: 100%;
+  font-family: var(--font-fam);
 }
 
 .navItem:last-child {

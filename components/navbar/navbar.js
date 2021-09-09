@@ -1,16 +1,63 @@
 import styles from "./Navbar.module.css";
 import NavbarLink from "../navbarLink/navbarLink";
-import { FaMale, FaFemale, FaCarBattery, FaCrown } from "react-icons/fa";
 
-export default function Navbar() {
+import {
+  FaMale,
+  FaFemale,
+  FaCarBattery,
+  FaCrown,
+  FaArrowLeft,
+  FaGithub,
+} from "react-icons/fa";
+import { useEffect, useState } from "react";
+
+export default function Navbar({ passCategory }) {
+  const [category, setCategory] = useState("Dripio");
+
+  const getCategory = (categoryPassed) => setCategory(categoryPassed);
+
+  useEffect(() => passCategory(category), [category]);
+
   return (
     <nav className={styles.navbar}>
       <ul className={styles.navbarNav}>
-        <NavbarLink text="logo" hrefPath="#" icon={<FaMale />} isLogo={true} />
-        <NavbarLink text="men's " hrefPath="#" icon={<FaMale />} />
-        <NavbarLink text="women's  " hrefPath="#" icon={<FaFemale />} />
-        <NavbarLink text="jewelry" hrefPath="#" icon={<FaCrown />} />
-        <NavbarLink text="electronics" hrefPath="#" icon={<FaCarBattery />} />
+        <NavbarLink
+          text="Dripio"
+          hrefPath="/"
+          icon={<FaArrowLeft />}
+          isLogo={true}
+          passCategory={getCategory}
+        />
+        <NavbarLink
+          text="Men's"
+          hrefPath="/"
+          icon={<FaMale />}
+          passCategory={getCategory}
+        />
+        <NavbarLink
+          text="Women's"
+          hrefPath="/"
+          icon={<FaFemale />}
+          passCategory={getCategory}
+        />
+        <NavbarLink
+          text="Jewelry"
+          hrefPath="/"
+          icon={<FaCrown />}
+          passCategory={getCategory}
+        />
+        <NavbarLink
+          text="Electronics"
+          hrefPath="/"
+          icon={<FaCarBattery />}
+          passCategory={getCategory}
+        />
+        <NavbarLink
+          text="GitHub"
+          hrefPath="https://github.com/GafurCodes?tab=repositories"
+          icon={<FaGithub />}
+          isGithub={true}
+        />
       </ul>
     </nav>
   );
