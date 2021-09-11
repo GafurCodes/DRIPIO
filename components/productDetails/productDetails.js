@@ -12,6 +12,7 @@ export default function ProductDetails({
   image,
   rate,
   rateCount,
+  getCartQuantity,
 }) {
   const [itemQuantity, setItemQuantity] = useState(1);
 
@@ -39,12 +40,16 @@ export default function ProductDetails({
               </h3>
             </section>
             <h3 className={`${styles.thinText} ${styles.price}`}>
-              ${price * itemQuantity}
+              ${price.toFixed(0) * itemQuantity}
             </h3>
           </section>
           <section className={styles.controls}>
             <ItemQuantity passQuantity={getItemQuantity} />
-            <button>Add To Cart</button>
+            <button
+              onClick={() => getCartQuantity(itemQuantity, { title, image })}
+            >
+              Add To Cart
+            </button>
           </section>
         </section>
         <Image

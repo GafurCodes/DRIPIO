@@ -9,6 +9,7 @@ export default function Product({
     image,
     rating: { rate, count },
   },
+  getCartQuantity,
 }) {
   return (
     <ProductDetails
@@ -19,6 +20,7 @@ export default function Product({
       image={image}
       rate={rate}
       rateCount={count}
+      getCartQuantity={getCartQuantity}
     />
   );
 }
