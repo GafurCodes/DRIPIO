@@ -1,1 +1,19 @@
+.cart {
+  position: absolute;
+  right: 3rem;
+}
 
+.subtotal {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  font-size: 2rem;
+}
+
+.subtotal h2:first-child {
+  font-weight: var(--thin);
+}
+
+.subtotal h2:last-child {
+  font-weight: var(--bold);
+}

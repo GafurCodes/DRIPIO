@@ -1,0 +1,25 @@
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem auto;
+}
+
+.imageAndInfo {
+  display: flex;
+  align-items: center;
+}
+
+.info {
+  margin-left: 2rem;
+  font-size: 1.2rem;
+}
+
+.price {
+  font-weight: var(--bold);
+  font-size: 1.2rem;
+}
+
+.quantity {
+  font-weight: var(--thin);
+}
