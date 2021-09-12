@@ -80,6 +80,7 @@
     width: 80vw;
     flex-direction: column;
     text-align: center;
+    margin-top: 5rem;
   }
 
   .ratingAndPrice {
