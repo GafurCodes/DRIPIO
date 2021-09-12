@@ -14,12 +14,22 @@ import {
 import CartItemThumbnail from "../cartItemThumbnail/cartItemThumbnail";
 import { FaShoppingCart } from "react-icons/fa";
 import styles from "./Cart.module.css";
-import { IconContext } from "react-icons";
 
 export default function Cart() {
-  const cart = useContext(CartContext);
+  const { cart } = useContext(CartContext);
+  const { setCart } = useContext(CartContext);
+
+  const [idToRemove, setIdToRemove] = useState();
+
+  const getIdToRemove = (id) => {
+    setIdToRemove(id);
+  };
 
   const [itemQuantity, setItemQuantity] = useState(0);
+
+  useEffect(() => {
+    setCart((oldCart) => oldCart.filter((item) => item.item.id != idToRemove));
+  }, [idToRemove, setCart]);
 
   useEffect(() => {
     let itemQ = 0;
@@ -37,8 +47,6 @@ export default function Cart() {
   const generateKey = () => {
     return "id" + Math.random().toString(16).slice(2);
   };
-
-  console.log(cart);
 
   const calculateSubtotal = () => {
     let subtotal = 0;
@@ -79,6 +87,8 @@ export default function Cart() {
                   image={cartItem.item.image}
                   price={cartItem.item.price}
                   key={generateKey()}
+                  id={cartItem.item.id}
+                  passIdToRemove={getIdToRemove}
                 />
               );
             })}
@@ -95,7 +105,7 @@ export default function Cart() {
               <h2>Subtotal:</h2>
               <h2>${calculateSubtotal()}</h2>
             </div>
-            <Button bg="brand.bg" color="brand.primary" w="full">
+            <Button bg="brand.bg" color="brand.primary" w="full" size="lg">
               Checkout
             </Button>
           </DrawerFooter>

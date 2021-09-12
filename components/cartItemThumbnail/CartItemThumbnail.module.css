@@ -3,6 +3,7 @@
   justify-content: space-between;
   align-items: center;
   margin: 2rem auto;
+  position: relative;
 }
 
 .imageAndInfo {
@@ -13,6 +14,10 @@
 .info {
   margin-left: 2rem;
   font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  justify-content: space-between;
 }
 
 .price {
@@ -22,4 +27,12 @@
 
 .quantity {
   font-weight: var(--thin);
+}
+
+.closeBtn {
+  align-self: flex-start;
+}
+
+.closeBtn:hover {
+  color: var(--accent-color);
 }

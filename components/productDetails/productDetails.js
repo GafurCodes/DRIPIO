@@ -12,12 +12,16 @@ export default function ProductDetails({
   image,
   rate,
   rateCount,
-  getCartQuantity,
+  getCartItems,
 }) {
   const [itemQuantity, setItemQuantity] = useState(1);
 
   const getItemQuantity = (itemQ) => {
     setItemQuantity(itemQ);
+  };
+
+  const generateKey = () => {
+    return "id" + Math.random().toString(16).slice(2);
   };
 
   return (
@@ -47,7 +51,12 @@ export default function ProductDetails({
             <ItemQuantity passQuantity={getItemQuantity} />
             <button
               onClick={() =>
-                getCartQuantity(itemQuantity, { title, image, price })
+                getCartItems(itemQuantity, {
+                  title,
+                  image,
+                  price,
+                  id: generateKey(),
+                })
               }
             >
               Add To Cart
