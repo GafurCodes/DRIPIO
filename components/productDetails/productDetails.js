@@ -46,7 +46,9 @@ export default function ProductDetails({
           <section className={styles.controls}>
             <ItemQuantity passQuantity={getItemQuantity} />
             <button
-              onClick={() => getCartQuantity(itemQuantity, { title, image })}
+              onClick={() =>
+                getCartQuantity(itemQuantity, { title, image, price })
+              }
             >
               Add To Cart
             </button>
