@@ -10,6 +10,13 @@ import {
   DrawerCloseButton,
   useDisclosure,
   Button,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
 } from "@chakra-ui/react";
 import CartItemThumbnail from "../cartItemThumbnail/cartItemThumbnail";
 import { FaShoppingCart } from "react-icons/fa";
@@ -41,7 +48,18 @@ export default function Cart() {
     setItemQuantity(itemQ);
   }, [cart]);
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isOpenDrawer,
+    onOpen: onOpenDrawer,
+    onClose: onCloseDrawer,
+  } = useDisclosure();
+
+  const {
+    isOpen: isOpenModal,
+    onOpen: onOpenModal,
+    onClose: onCloseModal,
+  } = useDisclosure();
+
   const btnRef = useRef();
 
   const generateKey = () => {
@@ -60,13 +78,13 @@ export default function Cart() {
 
   return (
     <div className={styles.cart}>
-      <Button ref={btnRef} bg="brand.primary" onClick={onOpen}>
+      <Button ref={btnRef} bg="brand.primary" onClick={onOpenDrawer}>
         <FaShoppingCart />
       </Button>
       <Drawer
-        isOpen={isOpen}
+        isOpen={isOpenDrawer}
         placement="right"
-        onClose={onClose}
+        onClose={onCloseDrawer}
         finalFocusRef={btnRef}
         size={"lg"}
       >
@@ -105,9 +123,40 @@ export default function Cart() {
               <h2>Subtotal:</h2>
               <h2>${calculateSubtotal()}</h2>
             </div>
-            <Button bg="brand.bg" color="brand.primary" w="full" size="lg">
+            <Button
+              bg="brand.bg"
+              color="brand.primary"
+              w="full"
+              size="lg"
+              onClick={onOpenModal}
+            >
               Checkout
             </Button>
+
+            <Modal isOpen={isOpenModal} onClose={onCloseModal} size={"xl"}>
+              <ModalOverlay />
+              <ModalContent>
+                <ModalHeader>Modal Title</ModalHeader>
+                <ModalCloseButton />
+                <ModalBody>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Ipsam eveniet, quam, nihil expedita nobis accusamus doloribus
+                  ducimus odit cupiditate modi harum quisquam eum officia aut
+                  libero fuga praesentium totam! Incidunt. Iste eaque magnam,
+                  libero architecto maiores reiciendis tenetur animi numquam
+                  eligendi cumque consequatur inventore sit id illum dolore.
+                  Magni, amet similique? Nisi aliquam obcaecati quidem numquam
+                  sunt velit eaque iusto!
+                </ModalBody>
+
+                <ModalFooter>
+                  <Button colorScheme="blue" mr={3} onClick={onCloseModal}>
+                    Close
+                  </Button>
+                  <Button variant="ghost">Secondary Action</Button>
+                </ModalFooter>
+              </ModalContent>
+            </Modal>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
