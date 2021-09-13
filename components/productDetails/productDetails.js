@@ -3,6 +3,7 @@ import ItemQuantity from "../itemQuantity/itemQuantity";
 import styles from "./productDetails.module.css";
 import ReactStars from "react-rating-stars-component";
 import { useState } from "react";
+import { useToast } from "@chakra-ui/react";
 
 export default function ProductDetails({
   title,
@@ -23,6 +24,8 @@ export default function ProductDetails({
   const generateKey = () => {
     return "id" + Math.random().toString(16).slice(2);
   };
+
+  const toast = useToast();
 
   return (
     <div className={styles.wrapper}>
@@ -50,14 +53,22 @@ export default function ProductDetails({
           <section className={styles.controls}>
             <ItemQuantity passQuantity={getItemQuantity} />
             <button
-              onClick={() =>
+              onClick={() => {
                 getCartItems(itemQuantity, {
                   title,
                   image,
                   price,
                   id: generateKey(),
-                })
-              }
+                });
+
+                toast({
+                  title: "Item added.",
+                  description: "We've added the item to your cart.",
+                  status: "success",
+                  duration: 3000,
+                  isClosable: true,
+                });
+              }}
             >
               Add To Cart
             </button>
