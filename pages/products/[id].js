@@ -2,27 +2,30 @@ import { useState } from "react";
 import ProductDetails from "../../components/productDetails/productDetails";
 
 export default function Product({
-  data: {
-    title,
-    price,
-    description,
-    category,
-    image,
-    rating: { rate, count },
-  },
+  // data: {
+  //   title,
+  //   price,
+  //   description,
+  //   category,
+  //   image,
+  //   rating: { rate, count },
+  // },
+  data,
   getCartItems,
 }) {
   if (!data) return null;
-  <ProductDetails
-    title={title}
-    price={price}
-    description={description}
-    category={category}
-    image={image}
-    rate={rate}
-    rateCount={count}
-    getCartItems={getCartItems}
-  />;
+  return (
+    <ProductDetails
+      title={data.title}
+      price={data.price}
+      description={data.description}
+      category={data.category}
+      image={data.image}
+      rate={data.rating.rate}
+      rateCount={data.rating.count}
+      getCartItems={getCartItems}
+    />
+  );
 }
 
 export async function getStaticProps({ params: { id } }) {
