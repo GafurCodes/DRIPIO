@@ -17,9 +17,21 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
+  Input,
+  VStack,
+  InputGroup,
+  InputLeftAddon,
+  InputLeftElement,
+  useToast,
 } from "@chakra-ui/react";
 import CartItemThumbnail from "../cartItemThumbnail/cartItemThumbnail";
-import { FaShoppingCart } from "react-icons/fa";
+import {
+  FaShoppingCart,
+  FaAddressCard,
+  FaHome,
+  FaRegPaperPlane,
+  FaMoneyCheck,
+} from "react-icons/fa";
 import styles from "./Cart.module.css";
 
 export default function Cart() {
@@ -76,6 +88,8 @@ export default function Cart() {
     return subtotal;
   };
 
+  const toast = useToast();
+
   return (
     <div className={styles.cart}>
       <Button ref={btnRef} bg="brand.primary" onClick={onOpenDrawer}>
@@ -124,10 +138,11 @@ export default function Cart() {
               <h2>${calculateSubtotal()}</h2>
             </div>
             <Button
-              bg="brand.bg"
-              color="brand.primary"
+              bg="brand.primary"
+              color="brand.bg"
               w="full"
               size="lg"
+              disabled={cart.length > 0 ? false : true}
               onClick={onOpenModal}
             >
               Checkout
@@ -136,24 +151,58 @@ export default function Cart() {
             <Modal isOpen={isOpenModal} onClose={onCloseModal} size={"xl"}>
               <ModalOverlay />
               <ModalContent>
-                <ModalHeader>Modal Title</ModalHeader>
+                <ModalHeader>Checkout</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Ipsam eveniet, quam, nihil expedita nobis accusamus doloribus
-                  ducimus odit cupiditate modi harum quisquam eum officia aut
-                  libero fuga praesentium totam! Incidunt. Iste eaque magnam,
-                  libero architecto maiores reiciendis tenetur animi numquam
-                  eligendi cumque consequatur inventore sit id illum dolore.
-                  Magni, amet similique? Nisi aliquam obcaecati quidem numquam
-                  sunt velit eaque iusto!
+                  <VStack spacing={5}>
+                    <InputGroup>
+                      <InputLeftElement pointerEvents="none">
+                        <FaAddressCard color="brand.tertiary" />
+                      </InputLeftElement>
+                      <Input
+                        variant="flushed"
+                        disabled={true}
+                        value="Fake Johnson"
+                      />
+                    </InputGroup>
+                    <InputGroup>
+                      <InputLeftElement>
+                        <FaHome />
+                      </InputLeftElement>
+                      <Input
+                        variant="flushed"
+                        disabled={true}
+                        value="
+This, That & The Other Street, Nova Scotia, Canada"
+                      />
+                    </InputGroup>
+                    <InputGroup>
+                      <InputLeftElement>
+                        <FaRegPaperPlane />
+                      </InputLeftElement>
+                      <Input
+                        variant="flushed"
+                        disabled={true}
+                        value="null@email.com"
+                      />
+                    </InputGroup>
+                    <InputGroup>
+                      <InputLeftElement>
+                        <FaMoneyCheck />
+                      </InputLeftElement>
+                      <Input
+                        variant="flushed"
+                        disabled={true}
+                        value="0234 3242 9874 3083"
+                      />
+                    </InputGroup>
+                  </VStack>
                 </ModalBody>
 
                 <ModalFooter>
-                  <Button colorScheme="blue" mr={3} onClick={onCloseModal}>
-                    Close
+                  <Button bg="brand.primary" onClick={onCloseModal}>
+                    Order!
                   </Button>
-                  <Button variant="ghost">Secondary Action</Button>
                 </ModalFooter>
               </ModalContent>
             </Modal>

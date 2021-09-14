@@ -3,7 +3,8 @@ import ItemQuantity from "../itemQuantity/itemQuantity";
 import styles from "./productDetails.module.css";
 import ReactStars from "react-rating-stars-component";
 import { useState } from "react";
-import { useToast } from "@chakra-ui/react";
+import { useToast, Button } from "@chakra-ui/react";
+import { FaCartPlus } from "react-icons/fa";
 
 export default function ProductDetails({
   title,
@@ -52,7 +53,11 @@ export default function ProductDetails({
           </section>
           <section className={styles.controls}>
             <ItemQuantity passQuantity={getItemQuantity} />
-            <button
+            <Button
+              leftIcon={<FaCartPlus />}
+              size="lg"
+              bg="brand.bg"
+              color="brand.primary"
               onClick={() => {
                 getCartItems(itemQuantity, {
                   title,
@@ -71,7 +76,7 @@ export default function ProductDetails({
               }}
             >
               Add To Cart
-            </button>
+            </Button>
           </section>
         </section>
         <Image
