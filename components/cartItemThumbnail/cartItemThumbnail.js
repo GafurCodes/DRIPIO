@@ -1,6 +1,5 @@
 import Image from "next/image";
 import styles from "./CartItemThumbnail.module.css";
-
 import { FaRegTimesCircle } from "react-icons/fa";
 
 export default function CartItemThumbnail({

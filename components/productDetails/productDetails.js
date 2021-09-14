@@ -5,6 +5,7 @@ import ReactStars from "react-rating-stars-component";
 import { useState } from "react";
 import { useToast, Button } from "@chakra-ui/react";
 import { FaCartPlus } from "react-icons/fa";
+import { useSpring, animated } from "react-spring";
 
 export default function ProductDetails({
   title,
@@ -28,8 +29,16 @@ export default function ProductDetails({
 
   const toast = useToast();
 
+  const props = useSpring({
+    config: {
+      duration: 1000,
+    },
+    to: { opacity: 1 },
+    from: { opacity: 0 },
+  });
+
   return (
-    <div className={styles.wrapper}>
+    <animated.div className={styles.wrapper} style={props}>
       <div className={styles.product}>
         <section className={styles.text}>
           <h1 className={styles.title}>{title}</h1>
@@ -87,6 +96,6 @@ export default function ProductDetails({
           className={styles.productImage}
         />
       </div>
-    </div>
+    </animated.div>
   );
 }

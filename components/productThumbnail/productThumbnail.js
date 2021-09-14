@@ -2,10 +2,19 @@ import Image from "next/image";
 import styles from "./Product.module.css";
 import Link from "next/link";
 import ReactStars from "react-rating-stars-component";
+import { useSpring, animated } from "react-spring";
 
 export default function Product({ rating, image, title, id }) {
+  const props = useSpring({
+    config: {
+      duration: 1000,
+    },
+    to: { opacity: 1 },
+    from: { opacity: 0 },
+  });
+
   return (
-    <div className={styles.products}>
+    <animated.div className={styles.products} style={props}>
       <Link href={`/products/${id}`}>
         <a>
           <section className={styles.productCard}>
@@ -36,6 +45,6 @@ export default function Product({ rating, image, title, id }) {
           </section>
         </a>
       </Link>
-    </div>
+    </animated.div>
   );
 }
