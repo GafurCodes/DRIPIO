@@ -1,5 +1,5 @@
 import Head from "next/head";
-import RenderProducts from "../components/renderProducts/RenderProducts";
+import RenderProducts from "../components/renderProducts/renderProducts";
 
 export default function Home({ data }) {
   return (
