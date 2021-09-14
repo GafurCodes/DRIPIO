@@ -11,7 +11,7 @@ export default function Product({
   },
   getCartItems,
 }) {
-  return (
+  return data ? (
     <ProductDetails
       title={title}
       price={price}
@@ -22,6 +22,8 @@ export default function Product({
       rateCount={count}
       getCartItems={getCartItems}
     />
+  ) : (
+    <h1>loading...</h1>
   );
 }
 
