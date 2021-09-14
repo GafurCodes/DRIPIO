@@ -1,3 +1,4 @@
+import { useState } from "react";
 import ProductDetails from "../../components/productDetails/productDetails";
 
 export default function Product({
@@ -11,20 +12,17 @@ export default function Product({
   },
   getCartItems,
 }) {
-  return data ? (
-    <ProductDetails
-      title={title}
-      price={price}
-      description={description}
-      category={category}
-      image={image}
-      rate={rate}
-      rateCount={count}
-      getCartItems={getCartItems}
-    />
-  ) : (
-    <h1>loading...</h1>
-  );
+  if (!data) return null;
+  <ProductDetails
+    title={title}
+    price={price}
+    description={description}
+    category={category}
+    image={image}
+    rate={rate}
+    rateCount={count}
+    getCartItems={getCartItems}
+  />;
 }
 
 export async function getStaticProps({ params: { id } }) {
