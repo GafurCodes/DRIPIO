@@ -200,7 +200,20 @@ This, That & The Other Street, Nova Scotia, Canada"
                 </ModalBody>
 
                 <ModalFooter>
-                  <Button bg="brand.primary" onClick={onCloseModal}>
+                  <Button
+                    bg="brand.primary"
+                    onClick={() => {
+                      toast({
+                        title: "Items ordered!",
+                        description: "Items will arrive in 3-5 business days.",
+                        status: "success",
+                        duration: 5000,
+                        isClosable: true,
+                      });
+                      setCart([]);
+                      onCloseModal();
+                    }}
+                  >
                     Order!
                   </Button>
                 </ModalFooter>
