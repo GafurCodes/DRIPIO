@@ -93,5 +93,6 @@
   .controls {
     justify-content: space-around;
     margin: 2rem auto;
+    margin-bottom: 4rem;
   }
 }
