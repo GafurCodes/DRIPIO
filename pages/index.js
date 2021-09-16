@@ -30,12 +30,7 @@ export default function Home({ data }) {
 
   return (
     <div>
-      <Modal
-        isOpen={isOpen}
-        onClose={onClose}
-        closeOnOverlayClick={false}
-        size="lg"
-      >
+      <Modal isOpen={isOpen} onClose={onClose} closeOnOverlayClick={false}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Disclaimer</ModalHeader>
@@ -44,7 +39,7 @@ export default function Home({ data }) {
             Greetings 👋
             <br />
             <br />
-            Thanks for taking the time to take a look at my project 🚀
+            Thanks for taking the time to consider my project 🚀
             <br />
             <br />
             <b>
