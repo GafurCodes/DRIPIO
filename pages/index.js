@@ -11,14 +11,22 @@ import {
   Button,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home({ data }) {
   //keeps track of the status of the modal. i.e. if it's closed, or open. also, opens the modal
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  //keeping track if the modal has opened to make sure the user doesn't get the modal when they go to the root path i.e. "/"
+  const [hasModalOpened, setHasModalOpened] = useState(false);
+
   //opens the modal once the page renders
-  useEffect(() => onOpen(), [onOpen]);
+  useEffect(() => {
+    // if the modal hasn't opened once, open it. if the modal was already displayed, don't do anything.
+    if (!hasModalOpened) {
+      onOpen(), setHasModalOpened(true);
+    }
+  }, [onOpen]);
 
   return (
     <div>
