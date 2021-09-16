@@ -10,12 +10,9 @@ import {
   FaGithub,
 } from "react-icons/fa";
 
-
 export default function Navbar({ passCategory }) {
-
-const getCategory = (categoryPassed) => passCategory(categoryPassed);
-
- 
+  // passes the category received from the navbarLink component up the tree to the layout component
+  const getCategory = (categoryPassed) => passCategory(categoryPassed);
 
   return (
     <nav className={styles.navbar}>
@@ -24,6 +21,7 @@ const getCategory = (categoryPassed) => passCategory(categoryPassed);
           text="Dripio"
           hrefPath="/"
           icon={<FaArrowLeft />}
+          // it it's a logo, give it logo styles instead of regular nav item styles
           isLogo={true}
           passCategory={getCategory}
         />
@@ -55,6 +53,7 @@ const getCategory = (categoryPassed) => passCategory(categoryPassed);
           text="GitHub"
           hrefPath="https://github.com/GafurCodes?tab=repositories"
           icon={<FaGithub />}
+          // if it's a github link, give it its styles, which puts it on the bottom of the navbar
           isGithub={true}
         />
       </ul>

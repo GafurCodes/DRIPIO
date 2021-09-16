@@ -35,6 +35,7 @@ a {
   --bold: 700;
 }
 
+/* custom scrollbar styles */
 body::-webkit-scrollbar {
   width: 0.25rem;
 }

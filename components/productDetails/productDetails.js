@@ -17,18 +17,23 @@ export default function ProductDetails({
   rateCount,
   getCartItems,
 }) {
+  //keeps track of how many items the user wants to add to cart
   const [itemQuantity, setItemQuantity] = useState(1);
 
+  //callback function that is passed to the itemQuantity component to set the itemQuantity above
   const getItemQuantity = (itemQ) => {
     setItemQuantity(itemQ);
   };
 
+  //generates a random id which I gave to every item added to cart. I needed every item to have a unique id so I can delete them accurately from the cart
   const generateKey = () => {
     return "id" + Math.random().toString(16).slice(2);
   };
 
+  //chakraui toast which pops up when a user adds an item to the cart
   const toast = useToast();
 
+  //config for the component render animation
   const props = useSpring({
     config: {
       duration: 1000,
@@ -38,6 +43,7 @@ export default function ProductDetails({
   });
 
   return (
+    //animated.div tells react spring (animation library) that this div needs to be animated with the following style={props}
     <animated.div className={styles.wrapper} style={props}>
       <div className={styles.product}>
         <section className={styles.text}>
@@ -57,10 +63,12 @@ export default function ProductDetails({
               </h3>
             </section>
             <h3 className={`${styles.thinText} ${styles.price}`}>
-              ${price.toFixed(0) * itemQuantity}
+              {/* toFixed in this case rounds to 0 decimal places */}$
+              {price.toFixed(0) * itemQuantity}
             </h3>
           </section>
           <section className={styles.controls}>
+            {/* passQuantity is a callback function which I defined above and passing here to make sure that the child component ItemQuantity passes the product counter to this parent component */}
             <ItemQuantity passQuantity={getItemQuantity} />
             <Button
               leftIcon={<FaCartPlus />}
@@ -68,6 +76,7 @@ export default function ProductDetails({
               bg="brand.bg"
               color="brand.primary"
               onClick={() => {
+                //onClick it will add items to cart
                 getCartItems(itemQuantity, {
                   title,
                   image,
@@ -75,6 +84,7 @@ export default function ProductDetails({
                   id: generateKey(),
                 });
 
+                //onClick it will trigger a toast
                 toast({
                   title: "Item added.",
                   description: "We've added the item to your cart.",

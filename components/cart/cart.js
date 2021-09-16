@@ -35,21 +35,29 @@ import {
 import styles from "./Cart.module.css";
 
 export default function Cart() {
+  // this is the value of cart
   const { cart } = useContext(CartContext);
+
+  //this is a function to set the cart
   const { setCart } = useContext(CartContext);
 
+  // keeps track of what item the user wants to remove after clicking the "x" next to the item
   const [idToRemove, setIdToRemove] = useState();
 
+  // callback function that is passed to the cartItemThumbnail to make sure that component informs cart which item to remove
   const getIdToRemove = (id) => {
     setIdToRemove(id);
   };
 
+  //keeps track of the number of items in the cart
   const [itemQuantity, setItemQuantity] = useState(0);
 
+  // a function that used the current idToRemove to remove an item form the cart
   useEffect(() => {
     setCart((oldCart) => oldCart.filter((item) => item.item.id != idToRemove));
   }, [idToRemove, setCart]);
 
+  //a function that calculates how many items are in the cart
   useEffect(() => {
     let itemQ = 0;
 
@@ -60,20 +68,25 @@ export default function Cart() {
     setItemQuantity(itemQ);
   }, [cart]);
 
+  // I'm defining every variable specifically because I need to use multiple useDisclosure hooks. One of the is for the drawer (cart) the other is for the (modal) checkout
+  // this is the cart drawer
   const {
     isOpen: isOpenDrawer,
     onOpen: onOpenDrawer,
     onClose: onCloseDrawer,
   } = useDisclosure();
 
+  // this is the checkout modal
   const {
     isOpen: isOpenModal,
     onOpen: onOpenModal,
     onClose: onCloseModal,
   } = useDisclosure();
 
+  // keeps track of what button opens the cart
   const btnRef = useRef();
 
+  // generating a unique id for every item in the cart which I'm passing to the CartItemThumbnail to make sure that I remove items from the cart accurately
   const generateKey = () => {
     return "id" + Math.random().toString(16).slice(2);
   };
@@ -81,6 +94,7 @@ export default function Cart() {
   const calculateSubtotal = () => {
     let subtotal = 0;
 
+    // maps over all the otems in the cart and adds up the items cost in the subtotal variable above
     cart.map((cartItem) => {
       subtotal += cartItem.item.price.toFixed(0) * cartItem.quantity;
     });
@@ -88,6 +102,7 @@ export default function Cart() {
     return subtotal;
   };
 
+  // toast which shows up when the user orders an item to confirm the order
   const toast = useToast();
 
   return (
@@ -106,11 +121,14 @@ export default function Cart() {
         <DrawerContent>
           <DrawerCloseButton />
           <DrawerHeader>
+            {/* &apos is a single quote --> ' */}
             You&apos;ve added {itemQuantity}{" "}
+            {/* if there is only 1 item in the cart, say item, otherwise, say items, per the English grammar ;) */}
             {itemQuantity == 1 ? "item" : "items"}.
           </DrawerHeader>
 
           <DrawerBody>
+            {/* maps out all the cart items into the cart drawer */}
             {cart.map((cartItem) => {
               return (
                 <CartItemThumbnail
@@ -126,6 +144,7 @@ export default function Cart() {
             })}
           </DrawerBody>
 
+          {/* below is the ChakraUI syntax for their component. nothing in my control. might look convoluted at first, but ChakraUI is pretty nice once you get used to it */}
           <DrawerFooter
             display="flex"
             flexDirection="column"

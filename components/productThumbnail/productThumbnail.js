@@ -5,6 +5,7 @@ import ReactStars from "react-rating-stars-component";
 import { useSpring, animated } from "react-spring";
 
 export default function Product({ rating, image, title, id }) {
+  //config for the render animation
   const props = useSpring({
     config: {
       duration: 1000,
@@ -14,6 +15,7 @@ export default function Product({ rating, image, title, id }) {
   });
 
   return (
+    //animated.div is a way to tell react spring (animation library) that this div needs to be animated
     <animated.div className={styles.products} style={props}>
       <Link href={`/products/${id}`}>
         <a>
@@ -33,6 +35,7 @@ export default function Product({ rating, image, title, id }) {
             </h1>
 
             <section className={styles.rating}>
+              {/* ReactStars is a component from a library that renders out stars with different settings. In this case, I used them for the api ratings. */}
               <ReactStars
                 size={20}
                 value={rating.rate}
