@@ -11,14 +11,15 @@ import {
   Button,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { DisclaimerContext } from "../components/disclaimerContext/disclaimerContext";
 
 export default function Home({ data }) {
   //keeps track of the status of the modal. i.e. if it's closed, or open. also, opens the modal
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  //keeping track if the modal has opened to make sure the user doesn't get the modal when they go to the root path i.e. "/"
-  const [hasModalOpened, setHasModalOpened] = useState(false);
+  const { hasModalOpened } = useContext(DisclaimerContext);
+  const { setHasModalOpened } = useContext(DisclaimerContext);
 
   //opens the modal once the page renders
   useEffect(() => {

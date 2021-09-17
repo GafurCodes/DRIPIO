@@ -5,6 +5,7 @@ import { useState } from "react";
 import { CartContext } from "../components/cartContext/cartContext";
 import Cart from "../components/cart/cart";
 import { extendTheme } from "@chakra-ui/react";
+import { DisclaimerContext } from "../components/disclaimerContext/disclaimerContext";
 
 //customizing chakraui default theme to include my colors
 const theme = extendTheme({
@@ -27,13 +28,20 @@ function MyApp({ Component, pageProps }) {
     setCart((prevCart) => [...prevCart, { item, quantity }]);
   };
 
+  //keeping track if the modal has opened to make sure the user doesn't get the modal when they go to the root path i.e. "/"
+  const [hasModalOpened, setHasModalOpened] = useState(false);
+
   return (
     <ChakraProvider theme={theme}>
       <CartContext.Provider value={{ cart, setCart }}>
-        <Layout>
-          <Cart />
-          <Component getCartItems={getCartItems} {...pageProps} />
-        </Layout>
+        <DisclaimerContext.Provider
+          value={{ hasModalOpened, setHasModalOpened }}
+        >
+          <Layout>
+            <Cart />
+            <Component getCartItems={getCartItems} {...pageProps} />
+          </Layout>
+        </DisclaimerContext.Provider>
       </CartContext.Provider>
     </ChakraProvider>
   );
